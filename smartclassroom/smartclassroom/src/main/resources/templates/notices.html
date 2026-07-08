@@ -4,7 +4,12 @@
     <title>Notice Board</title>
 
     <style>
-        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI,sans-serif;
+        }
 
         body{
             min-height:100vh;
@@ -14,7 +19,11 @@
             align-items:center;
         }
 
-        .container{display:flex;gap:30px;align-items:flex-start;}
+        .container{
+            display:flex;
+            gap:30px;
+            align-items:flex-start;
+        }
 
         .box,.table-box{
             background:rgba(255,255,255,0.18);
@@ -25,22 +34,32 @@
             color:white;
         }
 
-        .box{width:430px;}
-        .table-box{width:760px;}
+        .box{
+            width:430px;
+        }
 
-        h1,h2{text-align:center;margin-bottom:20px;}
-        label{font-weight:bold;}
+        .table-box{
+            width:750px;
+        }
+
+        h1,h2{
+            text-align:center;
+            margin-bottom:20px;
+        }
 
         input,textarea{
             width:100%;
             padding:12px;
-            margin:8px 0 18px;
+            margin:10px 0;
             border:none;
             border-radius:10px;
             outline:none;
         }
 
-        textarea{height:120px;resize:none;}
+        textarea{
+            height:120px;
+            resize:none;
+        }
 
         button{
             width:100%;
@@ -49,12 +68,15 @@
             border-radius:12px;
             background:white;
             color:#4f46e5;
-            font-size:16px;
             font-weight:bold;
+            font-size:16px;
             cursor:pointer;
         }
 
-        button:hover{background:#4f46e5;color:white;}
+        button:hover{
+            background:#4f46e5;
+            color:white;
+        }
 
         table{
             width:100%;
@@ -65,8 +87,21 @@
             overflow:hidden;
         }
 
-        th{background:#4f46e5;color:white;padding:12px;}
-        td{padding:10px;text-align:center;border-bottom:1px solid #ddd;}
+        th{
+            background:#4f46e5;
+            color:white;
+            padding:12px;
+        }
+
+        td{
+            padding:12px;
+            border-bottom:1px solid #ddd;
+            text-align:center;
+        }
+
+        tr:hover{
+            background:#f2f2f2;
+        }
 
         a{
             display:block;
@@ -76,7 +111,9 @@
             text-decoration:none;
             font-weight:bold;
         }
+
     </style>
+
 </head>
 
 <body>
@@ -84,26 +121,38 @@
 <div class="container">
 
     <div class="box">
+
         <h1>📢 Notice Board</h1>
 
         <form action="/saveNotice" method="post">
 
-            <label>Notice Title</label>
-            <input type="text" name="title" placeholder="Enter Notice Title" required>
+            <input
+                type="text"
+                name="title"
+                placeholder="Notice Title"
+                required>
 
-            <label>Notice Message</label>
-            <textarea name="message" placeholder="Enter Notice Message" required></textarea>
+            <textarea
+                name="message"
+                placeholder="Notice Message"
+                required></textarea>
 
-            <button type="submit">📌 Post Notice</button>
+            <button type="submit">
+                Post Notice
+            </button>
+
         </form>
 
         <a href="/">⬅ Back to Home</a>
+
     </div>
 
     <div class="table-box">
+
         <h2>📋 Posted Notices</h2>
 
         <table>
+
             <tr>
                 <th>ID</th>
                 <th>Title</th>
@@ -115,7 +164,9 @@
                 <td th:text="${notice.title}"></td>
                 <td th:text="${notice.message}"></td>
             </tr>
+
         </table>
+
     </div>
 
 </div>

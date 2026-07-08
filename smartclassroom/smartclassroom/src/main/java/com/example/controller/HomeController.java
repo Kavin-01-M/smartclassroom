@@ -14,7 +14,6 @@ import com.example.smartclassroom.model.Assignment;
 import com.example.smartclassroom.repository.AssignmentRepository;
 import com.example.smartclassroom.model.Notice;
 import com.example.smartclassroom.repository.NoticeRepository;
-import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
@@ -26,36 +25,19 @@ private AttendanceRepository attendanceRepository;
 private AssignmentRepository assignmentRepository;
 @Autowired
 private NoticeRepository noticeRepository;
-   @GetMapping("/home")
-public String home(HttpSession session) {
-    if (session.getAttribute("user") == null) {
-        return "redirect:/";
+    @GetMapping("/")
+    public String home() {
+        return "home";
     }
-    return "home";
-}
 
-   @GetMapping("/students")
-public String students(@RequestParam(required = false) String date, Model model) {
-
-    if (date != null && !date.isEmpty()) {
-        model.addAttribute("students", studentRepository.findByDate(date));
-        model.addAttribute("selectedDate", date);
-    } else {
+    @GetMapping("/students")
+    public String students(Model model) {
         model.addAttribute("students", studentRepository.findAll());
+        return "students";
     }
-
-    return "students";
-}
 @GetMapping("/attendance")
-public String attendance(@RequestParam(required = false) String date, Model model) {
-
-    if (date != null && !date.isEmpty()) {
-        model.addAttribute("attendanceList", attendanceRepository.findByDate(date));
-        model.addAttribute("selectedDate", date);
-    } else {
-        model.addAttribute("attendanceList", attendanceRepository.findAll());
-    }
-
+public String attendance(Model model) {
+    model.addAttribute("attendanceList", attendanceRepository.findAll());
     return "attendance";
 }
 @GetMapping("/assignments")
@@ -66,62 +48,31 @@ public String assignments(Model model) {
 public String notices(Model model) {
     model.addAttribute("notices", noticeRepository.findAll());
     return "notices";
-}@GetMapping("/")
-public String loginPage() {
-    return "login";
 }
 
-@PostMapping("/login")
-public String login(
-        @RequestParam String username,
-        @RequestParam String password,
-        HttpSession session,
-        Model model) {
+    @PostMapping("/saveStudent")
+    public String saveStudent(
+            @RequestParam String name,
+            @RequestParam String rollNumber,
+            @RequestParam String className) {
 
-    if (username.equals("admin") && password.equals("admin123")) {
-        session.setAttribute("user", username);
-        return "redirect:/home";
-    } else {
-        model.addAttribute("error", "Invalid username or password");
-        return "login";
+        Student student = new Student();
+        student.setName(name);
+        student.setRollNumber(rollNumber);
+        student.setClassName(className);
+
+        studentRepository.save(student);
+
+        return "redirect:/students";
     }
-}
-
-@GetMapping("/logout")
-public String logout(HttpSession session) {
-    session.invalidate();
-    return "redirect:/";
-}
-
- @PostMapping("/saveStudent")
-public String saveStudent(
-        @RequestParam String name,
-        @RequestParam String rollNumber,
-        @RequestParam String className,
-        @RequestParam String date) {
-
-    Student student = new Student();
-
-    student.setName(name);
-    student.setRollNumber(rollNumber);
-    student.setClassName(className);
-    student.setDate(date);
-
-    studentRepository.save(student);
-
-    return "redirect:/students";
-}
-@PostMapping("/saveAttendance")
+    @PostMapping("/saveAttendance")
 public String saveAttendance(
         @RequestParam String studentName,
-        @RequestParam String status,
-        @RequestParam String date) {
+        @RequestParam String status) {
 
     Attendance attendance = new Attendance();
-
     attendance.setStudentName(studentName);
     attendance.setStatus(status);
-    attendance.setDate(date);
 
     attendanceRepository.save(attendance);
 

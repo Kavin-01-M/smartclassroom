@@ -14,7 +14,6 @@ public class Attendance {
 
     private String studentName;
     private String status;
-    private String date;
 
     public Long getId() {
         return id;
@@ -28,10 +27,6 @@ public class Attendance {
         return status;
     }
 
-    public String getDate() {
-        return date;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -42,9 +37,5 @@ public class Attendance {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 }
