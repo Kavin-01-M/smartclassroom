@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Classroom Solution</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI, sans-serif;
+        }
+
+       body{
+    margin:0;
+    padding:0;
+    min-height:100vh;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.45),rgba(0,0,0,0.45)),
+    url("/images/background.jpg");
+
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+
+    color:white;
+}
+
+        .topbar{
+            background:#111;
+            color:white;
+            padding:10px 80px;
+            display:flex;
+            justify-content:flex-end;
+            gap:25px;
+            font-size:14px;
+        }
+
+        .navbar{
+            background:white;
+            padding:22px 80px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .logo{
+            font-size:26px;
+            font-weight:bold;
+            color:#e60012;
+        }
+
+        .nav-links a{
+            text-decoration:none;
+            color:#222;
+            margin-left:30px;
+            font-weight:600;
+        }
+
+        .hero{
+            min-height:520px;
+            display:flex;
+            align-items:center;
+            padding:60px 90px;
+            background:white;
+            overflow:hidden;
+        }
+
+        .hero-text{
+            width:50%;
+        }
+
+        .hero-text h1{
+            font-size:56px;
+            font-weight:500;
+            margin-bottom:20px;
+        }
+
+        .hero-text p{
+            font-size:26px;
+            color:#666;
+        }
+
+        .hero-img{
+            width:50%;
+            height:420px;
+            background:linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1)),
+            url('https://images.unsplash.com/photo-1580582932707-520aed937b7b');
+            background-size:cover;
+            background-position:center;
+            border-top-left-radius:220px;
+            border-bottom-left-radius:220px;
+        }
+
+        .tabs{
+            width:80%;
+            margin:-35px auto 50px;
+            background:white;
+            padding:25px 35px;
+            border-radius:12px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.12);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        .tabs a{
+            text-decoration:none;
+            color:#555;
+            font-size:18px;
+            font-weight:500;
+        }
+
+        .tabs a:first-child{
+            color:#e60012;
+        }
+
+        .btn{
+            background:#d90012;
+            color:white !important;
+            padding:15px 35px;
+            border-radius:30px;
+            font-weight:bold;
+        }
+
+        .section{
+            text-align:center;
+            padding:30px 150px;
+            font-size:20px;
+            color:#555;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="topbar">
+    <span>🌐 Worldwide</span>
+    <span>Login</span>
+</div>
+
+<div class="navbar">
+    <div class="logo">🏫 SMART CLASSROOM</div>
+
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/students">Students</a>
+        <a href="/attendance">Attendance</a>
+        <a href="#">Assignments</a>
+        <a href="#">Notices</a>
+    </div>
+</div>
+
+<div class="hero">
+    <div class="hero-text">
+        <h1>Smart Classroom Solution</h1>
+        <p>Building a Hybrid, Collaborative and Integrated Teaching Environment</p>
+    </div>
+
+    <div class="hero-img"></div>
+</div>
+
+<div class="tabs">
+    <a href="#">Overview</a>
+    <a href="/students">Student Management</a>
+    <a href="/attendance">Attendance</a>
+    <a href="#">Assignments</a>
+    <a href="#">Notice Board</a>
+    <a class="btn" href="/students">GET STARTED</a>
+</div>
+
+<div class="section">
+    Smart Classroom Management Software helps teachers manage students,
+    attendance, assignments and notices digitally for an enhanced learning environment.
+</div>
+
+</body>
+</html>

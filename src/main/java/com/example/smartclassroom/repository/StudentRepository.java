@@ -1,0 +1,10 @@
+package com.example.smartclassroom.repository;
+
+import com.example.smartclassroom.model.Student;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+
+public interface StudentRepository extends JpaRepository<Student, Long> {
+
+    List<Student> findByDate(String date);
+}
