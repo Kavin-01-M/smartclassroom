@@ -14,6 +14,7 @@ import com.example.smartclassroom.model.Assignment;
 import com.example.smartclassroom.repository.AssignmentRepository;
 import com.example.smartclassroom.model.Notice;
 import com.example.smartclassroom.repository.NoticeRepository;
+import jakarta.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
@@ -25,10 +26,13 @@ private AttendanceRepository attendanceRepository;
 private AssignmentRepository assignmentRepository;
 @Autowired
 private NoticeRepository noticeRepository;
-    @GetMapping("/")
-    public String home() {
-        return "home";
+   @GetMapping("/home")
+public String home(HttpSession session) {
+    if (session.getAttribute("user") == null) {
+        return "redirect:/";
     }
+    return "home";
+}
 
    @GetMapping("/students")
 public String students(@RequestParam(required = false) String date, Model model) {
@@ -62,6 +66,31 @@ public String assignments(Model model) {
 public String notices(Model model) {
     model.addAttribute("notices", noticeRepository.findAll());
     return "notices";
+}@GetMapping("/")
+public String loginPage() {
+    return "login";
+}
+
+@PostMapping("/login")
+public String login(
+        @RequestParam String username,
+        @RequestParam String password,
+        HttpSession session,
+        Model model) {
+
+    if (username.equals("admin") && password.equals("admin123")) {
+        session.setAttribute("user", username);
+        return "redirect:/home";
+    } else {
+        model.addAttribute("error", "Invalid username or password");
+        return "login";
+    }
+}
+
+@GetMapping("/logout")
+public String logout(HttpSession session) {
+    session.invalidate();
+    return "redirect:/";
 }
 
  @PostMapping("/saveStudent")
