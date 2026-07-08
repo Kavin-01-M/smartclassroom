@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Management</title>
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif;}
+        body{min-height:100vh;background:linear-gradient(135deg,#667eea,#764ba2,#00c6ff);display:flex;justify-content:center;align-items:center;}
+        .container{display:flex;gap:30px;align-items:flex-start;}
+        .box,.table-box{background:rgba(255,255,255,0.18);backdrop-filter:blur(15px);padding:30px;border-radius:25px;box-shadow:0 8px 32px rgba(0,0,0,0.25);color:white;}
+        .box{width:430px;}
+        .table-box{width:780px;}
+        h1,h2{text-align:center;margin-bottom:20px;}
+        label{font-weight:bold;}
+        input{width:100%;padding:12px;margin:8px 0 18px;border:none;border-radius:10px;outline:none;}
+        button{width:100%;padding:13px;border:none;border-radius:12px;background:white;color:#4f46e5;font-size:16px;font-weight:bold;cursor:pointer;}
+        button:hover{background:#4f46e5;color:white;}
+        table{width:100%;border-collapse:collapse;background:white;color:#333;border-radius:12px;overflow:hidden;margin-top:15px;}
+        th{background:#4f46e5;color:white;padding:12px;}
+        td{padding:10px;text-align:center;border-bottom:1px solid #ddd;}
+        a{display:block;text-align:center;margin-top:20px;color:white;text-decoration:none;font-weight:bold;}
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <div class="box">
+        <h1>🎓 Student</h1>
+
+        <form action="/saveStudent" method="post">
+            <label>Date</label>
+            <input type="date" name="date" required>
+
+            <label>Student Name</label>
+            <input type="text" name="name" placeholder="Enter Student Name" required>
+
+            <label>Roll Number</label>
+            <input type="text" name="rollNumber" placeholder="Enter Roll Number" required>
+
+            <label>Class</label>
+            <input type="text" name="className" placeholder="Enter Class" required>
+
+            <button type="submit">➕ Add Student</button>
+        </form>
+
+        <a href="/">⬅ Back to Home</a>
+    </div>
+
+    <div class="table-box">
+        <h2>📋 Student Records</h2>
+
+        <form action="/students" method="get">
+            <label>Select Date</label>
+            <input type="date" name="date" th:value="${selectedDate}">
+            <button type="submit">🔍 View Students</button>
+        </form>
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Roll No</th>
+                <th>Class</th>
+            </tr>
+
+            <tr th:each="student : ${students}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.date}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.rollNumber}"></td>
+                <td th:text="${student.className}"></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>
