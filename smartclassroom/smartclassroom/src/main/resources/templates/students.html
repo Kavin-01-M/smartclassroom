@@ -1,0 +1,51 @@
+<body>
+
+<div class="container">
+
+    <div class="box">
+        <h1>🎓 Student Management</h1>
+
+        <form action="/saveStudent" method="post">
+
+            <label>Student Name</label>
+            <input type="text" name="name" required>
+
+            <label>Roll Number</label>
+            <input type="text" name="rollNumber" required>
+
+            <label>Class</label>
+            <input type="text" name="className" required>
+
+            <button type="submit">➕ Add Student</button>
+        </form>
+
+        <a href="/">⬅ Back to Home</a>
+    </div>
+
+    <div class="table-box">
+        <h2>📋 Saved Students</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Roll No</th>
+                    <th>Class</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each="student : ${students}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.rollNumber}"></td>
+                    <td th:text="${student.className}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+</body>
